@@ -21,7 +21,10 @@ class HtmlGen {
     final markdownWithHeader = '# ${file.title}\n\n$markdownString';
     final mdHtml = markdownToHtml(markdownWithHeader);
 
-    File('./src/templates/styles.css').copySync('$outputDir/styles.css');
+    final cssOuputFile = File('$outputDir/styles.css');
+    cssOuputFile.createSync(recursive: true);
+
+    File('./src/templates/styles.css').copySync(cssOuputFile.path);
 
     final templateHtml = File('./src/templates/index.html').readAsStringSync();
 
